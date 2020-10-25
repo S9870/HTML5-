@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜狗</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        overflow-x: hidden;
+    }
+    .nav{
+        width: 1200px;
+        height: 50px;
+        margin: auto;
+        /* background-color: red; */
+    }
+    .outer{
+        border-bottom: 1px solid #7a7a7a;
+    }
+    .nav > div{
+        /* width: 200px; */
+        height: 100%;
+    }
+    .nav-left{
+        /* background-color: green; */
+        float: left;
+    }
+    .nav-right{
+        /* background-color: green; */
+        float: right;
+    }
+  
+    .outer ul > div{
+        margin: 0 10px;
+    }
+    .outer ul {
+            list-style: none;
+
+            /* 弹性布局：在父元素上设置弹性布局，那么它内部的所有子元素，都将转化为行内块 */
+            display: flex;
+            /* 利用弹性布局，对子元素进行布局：水平方向的布局，垂直方向的布局. */
+            /* 垂直方向：居中显示 */
+            align-items: center;
+
+            /* 水平方向：平分父元素的宽度 */
+            /* space-between 子元素在父元素中，两端对齐 */
+            justify-content: space-between;
+            
+            height: 50px;
+            margin: 0;
+            padding: 0;
+        }
+    .search{
+            width: 1200px;
+            height: 100px;
+            margin: 0 auto;
+            display: flex;
+            align-items:center;
+            justify-content: space-between;
+            /* background-color: teal;  */
+    }
+    .search input{
+            width: 200px;
+            height: 30px;
+            border: none;
+            border: 1px solid orangered;
+            outline: none;
+            padding-left:10px; 
+    }
+    .search a{
+            padding: 7px 10px;
+            background-color: orange;
+            margin-left:-7px;
+            vertical-align: middle; 
+    }
+    .topnav a{
+            float: left;
+            height: 20px;
+            font-size: 13px;
+            color: #7a7a7a;
+            font-family: '宋体';
+            margin-top: 7px;
+    }
+    .cates {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        width: 1200px;
+        display: flex;      /*   弹性布局 */
+        align-items: center;
+        height: 40px;
+        background-color: orangered;
+    }
+    .cate_nav{
+        background-color: orangered;
+    }
+    .cates li{
+        margin: 10px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        cursor: pointer;
+        font-size: 18px;
+        color: white;
+    }
+    .cates li:hover{
+        background-color: orange;
+    }
+    .cates li:first-child{
+        margin: 0;
+        background-color: orange;
+    }
+    .pos{
+        position: relative;
+    }
+    .new{
+        position: absolute;
+        top: -15px;
+        left: 100px;
+
+    }
+    .banner{
+        width: 100%;
+        height: 400px;
+        background-image:url("https://img03.sogoucdn.com/app/a/11130001/5ef1d8cb64054.jpg");
+        background-position:center; 
+    }
+    .banner > div {
+            width: 1030px;
+            height: 100%;
+            margin: 0 auto;
+            /* background-color: gray; */
+
+            /* 将这个元素设置为子元素绝对定位的参照物 */
+            position: relative;
+        }
+        .download {
+            width: 360px;
+            height: 150px;
+            /* background-color: yellow; */
+            /* 给子元素设置绝对定位：必须有参照物。 */
+            position: absolute;
+            top: 216px;
+            right: 15px;
+
+            /* 开始弹性布局 */
+            display: flex;
+            justify-content: space-between;
+        }
+        .download .d_left {
+            width: 240px;
+            height: 100%;
+            /* background-color: red; */
+            font-size: 14px;
+            color: yellowgreen;
+            padding-left: 674px;
+        }
+        .download .d_right {
+            width: 90px;
+            height: 100%;
+            /* background-color: orange; */
+        }
+        .d_left p {
+            margin-top: 5px;
+        }
+        .d_left p a {
+            color: yellowgreen;
+            margin-left: 20px;
+        }
+        .d_left > a {
+            display: block;
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+            background-color: yellow;
+            font-size: 30px;
+            font-weight: bolder;
+            font-family: "黑体";
+            text-decoration: none;
+            color: orange;
+            text-align: center;
+            line-height: 50px;
+            margin-top: 15px;
+        }
+        .d_right {
+            color: white;
+            text-align: center;
+        }
+        .d_right p {
+            font-size: 14px;
+            background-color: red;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+     /* 内容区域的样式 */
+
+     .content {
+            width: 1030px;
+            margin: 0 auto;
+            margin-top: 50px;
+
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .c-left {
+            width: 700px;
+            height: 800px;
+            /* background-color: yellow; */
+        }
+
+        .c-right {
+            width: 200px;
+            height: 800px;
+            background-color: gray;
+        }
+
+        .top>ul {
+            display: flex;
+            justify-content: space-between;
+            /* 如果弹性布局子元素，在同一排展示不完的时候，弹性布局是不允许子元素自动换行的，除非设置 flex-wrap: wrap; */
+            flex-wrap: wrap;
+        }
+
+        .top>ul>li {
+            width: 47%;
+            /* height: 150px; */
+            /* background-color: red; */
+            /* margin: 10px; */
+        }
+
+        .top .img {
+            height: 109px;
+            padding: 5px;
+            border: 1px solid lightblue;
+        }
+        .img > img {
+            width: 100%;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+        .info a {
+            text-decoration: none;
+            padding: 3px 10px;
+            border: 1px solid lightblue;
+            color: gray;
+            font-size: 12px;
+        }
+
+
+
+</style>
+<body>
+    <div class="outer">
+        <div class="nav">
+            <div class="nav-left">
+                <ul>
+                    <div class="topnav"><a href="#">输入法手机版</a></div>
+                    <div>|</div>
+                    <div class="topnav"><a href="#">输入法Mac版</a></div>
+                    <div>|</div>
+                    <div class="topnav"><a href="#">输入法企业版</a></div>
+                    <div>|</div>
+                    <div class="topnav"><a href="#">输入法Linux</a></div>
+                    <div>|</div>
+                    <div class="topnav"><a href="#">五笔输入法</a></div>
+                    <div>|</div>
+                    <div class="topnav"><a href="#">浏览器</a></div>
+                    <div>|</div>
+                    <div class="topnav"><a href="#">手机助手</a></div>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <ul>
+                    <div class="topnav"><a href="#">登陆</a></div>
+                    <div>|</div>
+                    <div class="topnav"><a href="#">注册</a></div>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="search">
+        <img src="https://imedl.sogoucdn.com/index/header/logo.png" alt="">
+        <div class="kk">
+            <input type="text" placeholder="输入点东西">
+            <a href="#">搜索</a>
+        </div>
+    </div>
+    <div class="cate_nav">
+        <ul class="cates">
+            <li>首页</li>
+            <li>皮肤</li>
+            <li>词库</li>
+            <li class="pos">
+                <img class="new" src="https://imedl.sogoucdn.com/index/2.0/new.png" alt="">
+                皮肤表情开放平台
+            </li>
+            <li>字媒体</li>
+            <li>帮助</li>
+            <li>升级日志</li>
+        </ul>
+    </div>
+    <div class="banner">
+          <!-- 右下角的下载信息 -->
+          <div class="download">
+                <div class="d_left">
+                    <p>更新日期：2020-06-23 <a href="#">新版特性</a></p>
+                    <p>支持：XP / WIN7 / WIN8 / WIN10</p>
+                    <a href="#">立即下载</a>
+                </div>
+                <div class="d_right">
+                    <img src="https://img.shouji.sogou.com/wapdl/hole/201909/03/shoujiime_20190903.jpg" alt="">
+                    <p>手机版下载</p>
+                </div>
+            </div>
+
+    </div>
+
+     <!-- 内容区域 -->
+     <div class="content">
+            <div class="c-left">
+                <!-- 精彩皮肤 -->
+                <div class="top">
+                    <img src="https://imedl.sogoucdn.com/index/2.0/side_title.png" alt="">
+                    <ul>
+                        <li>
+                            <div class="img">
+                                <img src="https://imedl.sogoucdn.com/cache/skins/uploadImage/2019/12/24/15771736111707_former.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <span>相濡以沫-心痛到无法呼吸</span>
+                                <a href="#">立即下载</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <img src="https://imedl.sogoucdn.com/cache/skins/uploadImage/2019/11/11/15734377969698_former.gif" alt="">
+                            </div>
+                            <div class="info">
+                                <span>野萌君-哈哈哈</span>
+                                <a href="#">立即下载</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <img src="https://imedl.sogoucdn.com/cache/skins/uploadImage/2019/10/25/15719939607434_former.png" alt="">
+                            </div>
+                            <div class="info">
+                                <span>种星星的人</span>
+                                <a href="#">立即下载</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <img src="https://imedl.sogoucdn.com/cache/skins/uploadImage/2019/07/23/15638756096409_former.png" alt="">
+                            </div>
+                            <div class="info">
+                                <span>瓶子里の精灵</span>
+                                <a href="#">立即下载</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <img src="https://imedl.sogoucdn.com/cache/skins/uploadImage/2019/05/28/15590301909412_former.png" alt="">
+                            </div>
+                            <div class="info">
+                                <span>尖叫鸡</span>
+                                <a href="#">立即下载</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <img src="https://imedl.sogoucdn.com/cache/skins/uploadImage/2019/05/08/15573084028904_former.png" alt="">
+                            </div>
+                            <div class="info">
+                                <span>阿肥宅</span>
+                                <a href="#">立即下载</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="center"></div>
+                <div class="bottom"></div>
+            </div>
+            <div class="c-right"></div>
+        </div>
+</body>
+</html>
